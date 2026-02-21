@@ -12,7 +12,7 @@
 - 异步任务处理，自动轮询结果
 - Docker 环境完美适配
 
-## 安装
+## 食用教程
 
 ### 方法一：通过 Koishi 插件市场安装 （目前还无法通过此途径安装，建议使用方法二和三）
 
@@ -22,6 +22,7 @@
 
 ### 方法二：手动安装
 
+先Fork本仓库
 ```bash
 # 进入 Koishi 的 node_modules 目录
 cd /path/to/koishi/node_modules
@@ -37,7 +38,7 @@ npm install
 ```
 
 ### 方法三：Docker 环境安装
-
+先Fork本仓库
 ```bash
 # 复制插件到容器
 docker cp koishi-plugin-zimage <容器名>:/koishi/node_modules/
