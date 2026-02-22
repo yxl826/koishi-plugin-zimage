@@ -1,6 +1,6 @@
 {
   "name": "koishi-plugin-zimage",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Koishi基于魔搭社区api的Z-Image AI画图插件，支持模型选择、自定义提示语、调用次数限制",
   "main": "lib/index.js",
   "author": "yxl826",

@@ -1,6 +1,14 @@
 # koishi-plugin-zimage
 
-基于魔搭社区 API 的 Koishi AI 画图插件，支持 Z-Image 系列模型。
+<div align="center">
+  <img src="icon.png" alt="koishi-plugin-zimage" width="128" height="128">
+  
+  基于魔搭社区 API 的 Koishi AI 画图插件
+  
+  [![npm](https://img.shields.io/npm/v/koishi-plugin-zimage.svg)](https://www.npmjs.com/package/koishi-plugin-zimage)
+  [![npm downloads](https://img.shields.io/npm/dm/koishi-plugin-zimage.svg)](https://www.npmjs.com/package/koishi-plugin-zimage)
+  [![GitHub](https://img.shields.io/github/license/yxl826/koishi-plugin-zimage)](https://github.com/yxl826/koishi-plugin-zimage/blob/main/LICENSE)
+</div>
 
 ## 功能特性
 
@@ -12,9 +20,9 @@
 - 异步任务处理，自动轮询结果
 - Docker 环境完美适配
 
-## 食用教程
+## 安装
 
-### 方法一：通过 Koishi 插件市场安装 （推荐）
+### 方法一：通过 Koishi 插件市场安装（推荐）
 
 1. 打开 Koishi 控制台
 2. 进入「插件市场」
@@ -22,13 +30,12 @@
 
 ### 方法二：手动安装
 
-先Fork本仓库
 ```bash
 # 进入 Koishi 的 node_modules 目录
 cd /path/to/koishi/node_modules
 
 # 克隆插件
-git clone https://github.com/你的用户名/koishi-plugin-zimage.git
+git clone https://github.com/yxl826/koishi-plugin-zimage.git
 
 # 进入目录并安装依赖
 cd koishi-plugin-zimage
@@ -38,7 +45,7 @@ npm install
 ```
 
 ### 方法三：Docker 环境安装
-先Fork本仓库
+
 ```bash
 # 复制插件到容器
 docker cp koishi-plugin-zimage <容器名>:/koishi/node_modules/
