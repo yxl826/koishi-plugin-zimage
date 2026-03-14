@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>koishi-plugin-zimage - 魔搭社区 AI 画图插件</title>
+    <meta name="description" content="基于魔搭社区 API 的 Koishi AI 画图插件，支持 Z-Image 系列模型">
+    <meta name="keywords" content="koishi,plugin,zimage,AI,画图,魔搭,modelscope">
+    <link rel="icon" href="../icon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar" id="navbar">
+        <div class="container nav-container">
+            <a href="#" class="logo">
+                <img src="../icon.png" alt="Z-Image" class="logo-img">
+                <span class="logo-text">koishi-plugin-zimage</span>
+            </a>
+            <div class="nav-links">
+                <a href="#features" class="nav-link">功能特性</a>
+                <a href="#install" class="nav-link">安装方法</a>
+                <a href="#config" class="nav-link">配置说明</a>
+                <a href="#usage" class="nav-link">使用方法</a>
+                <a href="#faq" class="nav-link">常见问题</a>
+            </div>
+            <div class="nav-buttons">
+                <a href="https://github.com/yxl826/koishi-plugin-zimage" target="_blank" class="btn btn-outline">
+                    <i class="fab fa-github"></i> GitHub
+                </a>
+                <a href="https://www.npmjs.com/package/koishi-plugin-zimage" target="_blank" class="btn btn-primary">
+                    <i class="fas fa-download"></i> npm 安装
+                </a>
+            </div>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- 移动端菜单 -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="#features" class="mobile-link">功能特性</a>
+        <a href="#install" class="mobile-link">安装方法</a>
+        <a href="#config" class="mobile-link">配置说明</a>
+        <a href="#usage" class="mobile-link">使用方法</a>
+        <a href="#faq" class="mobile-link">常见问题</a>
+        <div class="mobile-buttons">
+            <a href="https://github.com/yxl826/koishi-plugin-zimage" target="_blank" class="btn btn-outline btn-block">
+                <i class="fab fa-github"></i> GitHub
+            </a>
+            <a href="https://www.npmjs.com/package/koishi-plugin-zimage" target="_blank" class="btn btn-primary btn-block">
+                <i class="fas fa-download"></i> npm 安装
+            </a>
+        </div>
+    </div>
+
+    <!-- Hero 区域 -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-badges">
+                    <span class="badge"><i class="fas fa-box"></i> npm v1.1.0</span>
+                    <span class="badge"><i class="fas fa-check-circle"></i> Koishi ^4.17.0</span>
+                    <span class="badge"><i class="fas fa-shield-alt"></i> 违禁词过滤</span>
+                </div>
+                <h1 class="hero-title">
+                    <span>koishi-plugin-zimage</span>
+                </h1>
+                <p class="hero-subtitle">
+                    基于魔搭社区 API 的 Koishi AI 画图插件，支持 Z-Image 系列模型，让你的机器人拥有强大的 AI 绘画能力
+                </p>
+                <div class="hero-buttons">
+                    <a href="#install" class="btn btn-primary btn-lg">
+                        <i class="fas fa-rocket"></i> 快速开始
+                    </a>
+                    <a href="https://github.com/yxl826/koishi-plugin-zimage" target="_blank" class="btn btn-outline btn-lg">
+                        <i class="fab fa-github"></i> 查看源码
+                    </a>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <span class="stat-number">2</span>
+                        <span class="stat-label">AI 模型</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">7</span>
+                        <span class="stat-label">图片尺寸</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">∞</span>
+                        <span class="stat-label">创作可能</span>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="code-preview">
+                    <div class="code-header">
+                        <span class="code-dot red"></span>
+                        <span class="code-dot yellow"></span>
+                        <span class="code-dot green"></span>
+                        <span class="code-title">Terminal</span>
+                    </div>
+                    <pre class="code-content"><code><span class="code-comment"># 安装插件</span>
+<span class="code-cmd">npm</span> install koishi-plugin-zimage
+
+<span class="code-comment"># 或在 Koishi 插件市场搜索</span>
+<span class="code-cmd">zimage</span>
+
+<span class="code-comment"># 开始使用</span>
+<span class="code-prompt">></span> 画图 一只可爱的猫咪
+<span class="code-output">在画了喵</span>
+<span class="code-output">🎨 [图片已生成]</span></code></pre>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 功能特性 -->
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">功能特性</h2>
+                <p class="section-subtitle">强大的 AI 画图能力，丰富的自定义选项</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-images"></i>
+                    </div>
+                    <h3 class="feature-title">双模型支持</h3>
+                    <p class="feature-description">支持 Z-Image 和 Z-Image-Turbo 两种模型，满足不同场景需求</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-expand-arrows-alt"></i>
+                    </div>
+                    <h3 class="feature-title">多种尺寸</h3>
+                    <p class="feature-description">支持 7 种图片尺寸，包括正方形、竖版、横版、宽屏等</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-sliders-h"></i>
+                    </div>
+                    <h3 class="feature-title">自定义步长</h3>
+                    <p class="feature-description">可调整生成步长，平衡质量与速度</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3 class="feature-title">次数限制</h3>
+                    <p class="feature-description">支持每日调用次数限制，合理控制使用量</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-comment-dots"></i>
+                    </div>
+                    <h3 class="feature-title">自定义提示语</h3>
+                    <p class="feature-description">所有提示语均可自定义，打造个性化体验</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3 class="feature-title">违禁词过滤</h3>
+                    <p class="feature-description">支持自定义违禁词，可设置拒绝或替换模式</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fab fa-docker"></i>
+                    </div>
+                    <h3 class="feature-title">Docker 适配</h3>
+                    <p class="feature-description">完美支持 Docker 环境，一键部署</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 安装方法 -->
+    <section class="install" id="install">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">安装方法</h2>
+                <p class="section-subtitle">多种安装方式，选择最适合你的</p>
+            </div>
+            <div class="install-tabs">
+                <div class="tab-buttons">
+                    <button class="tab-btn active" data-tab="market">
+                        <i class="fas fa-store"></i> 插件市场
+                    </button>
+                    <button class="tab-btn" data-tab="npm">
+                        <i class="fas fa-terminal"></i> npm 安装
+                    </button>
+                    <button class="tab-btn" data-tab="docker">
+                        <i class="fab fa-docker"></i> Docker
+                    </button>
+                </div>
+                <div class="tab-content">
+                    <div class="tab-pane active" id="market">
+                        <div class="install-steps">
+                            <div class="step">
+                                <div class="step-number">1</div>
+                                <div class="step-content">
+                                    <h4>打开 Koishi 控制台</h4>
+                                    <p>登录你的 Koishi 实例管理后台</p>
+                                </div>
+                            </div>
+                            <div class="step">
+                                <div class="step-number">2</div>
+                                <div class="step-content">
+                                    <h4>进入插件市场</h4>
+                                    <p>点击左侧菜单的「插件市场」</p>
+                                </div>
+                            </div>
+                            <div class="step">
+                                <div class="step-number">3</div>
+                                <div class="step-content">
+                                    <h4>搜索并安装</h4>
+                                    <p>搜索 <code>zimage</code> 并点击安装</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="npm">
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span>手动安装</span>
+                                <button class="copy-btn" onclick="copyCode(this)">
+                                    <i class="fas fa-copy"></i> 复制
+                                </button>
+                            </div>
+                            <pre><code># 进入 Koishi 的 node_modules 目录
+cd /path/to/koishi/node_modules
+
+# 克隆插件
+git clone https://github.com/yxl826/koishi-plugin-zimage.git
+
+# 进入目录并安装依赖
+cd koishi-plugin-zimage
+npm install
+
+# 重启 Koishi</code></pre>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="docker">
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span>Docker 安装</span>
+                                <button class="copy-btn" onclick="copyCode(this)">
+                                    <i class="fas fa-copy"></i> 复制
+                                </button>
+                            </div>
+                            <pre><code># 复制插件到容器
+docker cp koishi-plugin-zimage <容器名>:/koishi/node_modules/
+
+# 进入容器安装依赖
+docker exec -it <容器名> sh
+cd /koishi/node_modules/koishi-plugin-zimage
+npm install
+exit
+
+# 重启容器
+docker restart <容器名></code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 配置说明 -->
+    <section class="config" id="config">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">配置说明</h2>
+                <p class="section-subtitle">灵活的配置选项，满足各种需求</p>
+            </div>
+            <div class="config-grid">
+                <div class="config-example">
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span>配置示例</span>
+                            <button class="copy-btn" onclick="copyCode(this)">
+                                <i class="fas fa-copy"></i> 复制
+                            </button>
+                        </div>
+                        <pre><code class="yaml">~zimage:
+  apiKey: ms-xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+  defaultModel: z-image-turbo
+  defaultSize: 1024x1024
+  defaultSteps: 8
+  dailyLimit: 100
+  # 违禁词配置
+  bannedWords: ['敏感词1', '敏感词2']
+  bannedWordsAction: reject
+  msgBanned: '你的描述包含敏感内容，无法生成喵'
+  # 提示语配置
+  msgGenerating: '在画了喵'
+  msgError: '发生错误了喵'
+  msgSuccess: '喵'</code></pre>
+                    </div>
+                </div>
+                <div class="config-options">
+                    <div class="config-card">
+                        <h4><i class="fas fa-key"></i> 必填配置</h4>
+                        <table class="config-table">
+                            <tr>
+                                <td><code>apiKey</code></td>
+                                <td>魔搭 API Key</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="config-card">
+                        <h4><i class="fas fa-cog"></i> 生成配置</h4>
+                        <table class="config-table">
+                            <tr>
+                                <td><code>defaultModel</code></td>
+                                <td>默认: z-image-turbo</td>
+                            </tr>
+                            <tr>
+                                <td><code>defaultSize</code></td>
+                                <td>默认: 1024x1024</td>
+                            </tr>
+                            <tr>
+                                <td><code>defaultSteps</code></td>
+                                <td>默认: 8</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="config-card">
+                        <h4><i class="fas fa-shield-alt"></i> 违禁词配置</h4>
+                        <table class="config-table">
+                            <tr>
+                                <td><code>bannedWords</code></td>
+                                <td>违禁词列表</td>
+                            </tr>
+                            <tr>
+                                <td><code>bannedWordsAction</code></td>
+                                <td>reject/replace</td>
+                            </tr>
+                            <tr>
+                                <td><code>msgBanned</code></td>
+                                <td>触发违禁词提示</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="config-card">
+                        <h4><i class="fas fa-comment"></i> 提示语配置</h4>
+                        <table class="config-table">
+                            <tr>
+                                <td><code>msgGenerating</code></td>
+                                <td>在画了喵</td>
+                            </tr>
+                            <tr>
+                                <td><code>msgError</code></td>
+                                <td>发生错误了喵</td>
+                            </tr>
+                            <tr>
+                                <td><code>msgSuccess</code></td>
+                                <td>喵</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 使用方法 -->
+    <section class="usage" id="usage">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">使用方法</h2>
+                <p class="section-subtitle">简单易用的命令系统</p>
+            </div>
+            <div class="usage-grid">
+                <div class="usage-card">
+                    <h3><i class="fas fa-terminal"></i> 基本命令</h3>
+                    <div class="command-list">
+                        <div class="command-item">
+                            <code>画图 一只可爱的猫咪</code>
+                            <span>生成图片</span>
+                        </div>
+                        <div class="command-item">
+                            <code>画图 -m z-image 夕阳风景</code>
+                            <span>指定模型</span>
+                        </div>
+                        <div class="command-item">
+                            <code>画图 -s 1344x768 未来城市</code>
+                            <span>指定尺寸</span>
+                        </div>
+                        <div class="command-item">
+                            <code>画图 -t 30 山水画</code>
+                            <span>指定步长</span>
+                        </div>
+                        <div class="command-item">
+                            <code>画图模型</code>
+                            <span>查看/设置模型</span>
+                        </div>
+                        <div class="command-item">
+                            <code>画图状态</code>
+                            <span>查看调用次数</span>
+                        </div>
+                        <div class="command-item">
+                            <code>画图违禁词</code>
+                            <span>查看违禁词列表</span>
+                        </div>
+                        <div class="command-item">
+                            <code>画图违禁词添加 词</code>
+                            <span>添加违禁词</span>
+                        </div>
+                        <div class="command-item">
+                            <code>画图违禁词删除 词</code>
+                            <span>删除违禁词</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="usage-card">
+                    <h3><i class="fas fa-expand"></i> 可用尺寸</h3>
+                    <table class="size-table">
+                        <thead>
+                            <tr>
+                                <th>尺寸</th>
+                                <th>方向</th>
+                                <th>用途</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>1024x1024</code></td>
+                                <td>正方形</td>
+                                <td>通用</td>
+                            </tr>
+                            <tr>
+                                <td><code>768x1344</code></td>
+                                <td>竖版</td>
+                                <td>手机壁纸</td>
+                            </tr>
+                            <tr>
+                                <td><code>1344x768</code></td>
+                                <td>横版</td>
+                                <td>电脑壁纸</td>
+                            </tr>
+                            <tr>
+                                <td><code>1440x720</code></td>
+                                <td>宽屏</td>
+                                <td>横幅/封面</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 模型选择 -->
+    <section class="models">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">模型选择</h2>
+                <p class="section-subtitle">两种模型，满足不同场景</p>
+            </div>
+            <div class="models-grid">
+                <div class="model-card featured">
+                    <div class="model-badge">推荐</div>
+                    <div class="model-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3>z-image-turbo</h3>
+                    <p class="model-desc">快速模型，速度优先</p>
+                    <ul class="model-features">
+                        <li><i class="fas fa-check"></i> 推荐步长: 8</li>
+                        <li><i class="fas fa-check"></i> 生成速度快</li>
+                        <li><i class="fas fa-check"></i> 适合日常使用</li>
+                    </ul>
+                </div>
+                <div class="model-card">
+                    <div class="model-icon">
+                        <i class="fas fa-image"></i>
+                    </div>
+                    <h3>z-image</h3>
+                    <p class="model-desc">标准模型，质量优先</p>
+                    <ul class="model-features">
+                        <li><i class="fas fa-check"></i> 推荐步长: 20-50</li>
+                        <li><i class="fas fa-check"></i> 生成质量高</li>
+                        <li><i class="fas fa-check"></i> 适合精细创作</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 常见问题 -->
+    <section class="faq" id="faq">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">常见问题</h2>
+                <p class="section-subtitle">遇到问题？这里可能有答案</p>
+            </div>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span><i class="fas fa-question-circle"></i> 提示 "Invalid model id"</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>确保模型名称正确，可用模型：<code>z-image-turbo</code>、<code>z-image</code></p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span><i class="fas fa-question-circle"></i> 生成超时怎么办？</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>可能是网络问题或服务器繁忙，可以尝试增加 <code>maxPollTime</code> 配置值</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span><i class="fas fa-question-circle"></i> 提示 API 错误</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>检查 API Key 是否正确，是否还有调用额度</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span><i class="fas fa-question-circle"></i> 如何获取魔搭 API Key？</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>访问 <a href="https://modelscope.cn" target="_blank">modelscope.cn</a> 注册账号，进入"我的 AccessToken"创建 API Key</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span><i class="fas fa-question-circle"></i> 支持哪些平台？</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>支持所有 Koishi 支持的平台，包括 QQ、微信、Telegram、Discord 等</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta">
+        <div class="container">
+            <h2>开始使用</h2>
+            <p>立即安装 koishi-plugin-zimage，为你的机器人添加强大的 AI 画图能力</p>
+            <div class="cta-buttons">
+                <a href="https://www.npmjs.com/package/koishi-plugin-zimage" target="_blank" class="btn btn-primary btn-lg">
+                    <i class="fas fa-download"></i> npm 安装
+                </a>
+                <a href="https://github.com/yxl826/koishi-plugin-zimage" target="_blank" class="btn btn-outline btn-lg">
+                    <i class="fab fa-github"></i> 查看源码
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <img src="../icon.png" alt="Z-Image" class="footer-logo">
+                    <span>koishi-plugin-zimage</span>
+                </div>
+                <div class="footer-links">
+                    <a href="https://github.com/yxl826/koishi-plugin-zimage" target="_blank">GitHub</a>
+                    <a href="https://www.npmjs.com/package/koishi-plugin-zimage" target="_blank">npm</a>
+                    <a href="https://koishi.chat/" target="_blank">Koishi</a>
+                    <a href="https://modelscope.cn/" target="_blank">魔搭社区</a>
+                </div>
+                <div class="footer-copyright">
+                    MIT License © 2025 yxl826
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/script.js"></script>
+</body>
+</html>
