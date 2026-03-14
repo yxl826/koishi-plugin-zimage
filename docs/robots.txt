@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://yxl826.github.io/koishi-plugin-zimage/sitemap.xml
